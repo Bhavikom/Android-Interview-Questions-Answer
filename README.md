@@ -37,6 +37,21 @@ I have try to make collection of interview questions-answer related to Android w
 	Here, language variable is reassigned to German. Since, the variable is declared using var, this code work perfectly.    
 
 	val language = "Hindi"    
-	language = "English"      // Error    
+	language = "English"      // Error 
+	
+5. Kotlin Basic Data Types
+
+	Kotlin is a statically typed language like Java. That is, the type of a variable is known during the compile time. For example,    
+
+	val language: Int    
+	val marks = 12.3    
+	Here, the compiler knows that language is of type Int, and marks is of type Double before the compile time.    
+
+	The built-in types in Kotlin can be categorized as:    
+
+	*Numbers    
+	*Characters    
+	*Booleans    
+	*Arrays    
 
 
