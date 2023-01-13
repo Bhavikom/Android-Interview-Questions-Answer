@@ -53,5 +53,20 @@ I have try to make collection of interview questions-answer related to Android w
 	*Characters    
 	*Booleans    
 	*Arrays    
+	
+6. what is varang keyword in kotlin    
+
+	Sometimes we need a function where we can pass n number of parameters, and the value of n can be decided at runtime. Kotlin provides us to achieve the same by 		defining a parameter of a function as vararg. We can pass n number of parameters to a vararg variable of the defined datatype or even of a generic type. 	
+	Example :    
+	
+	fun getAverage(vararg input: Int): Float {    
+   		var sum = 0.0f    
+    		for (item in input) {    
+        		sum += item    
+    		}
+    		return (sum / input.size)    
+	}    
+	val result1 = getAverage(1, 2, 3)    
+	val result2 = getAverage(1, 2, 3, 4, 5)    
 
 
