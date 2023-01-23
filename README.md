@@ -71,13 +71,13 @@ I have try to make collection of interview questions-answer related to Android w
 	
 7. what is JvmStatic Annotation in Kotlin
 
-	JvmStatic Annotation is used to call kotlin method from java in kotlin style
-	Ex :- object AppUtils {
-		 @JvmStatic
-    		fun install() {
-    	}
-	Now, we can call install() method from Java as below:
-	AppUtils.install();
+	JvmStatic Annotation is used to call kotlin method from java in kotlin style    
+	Ex :- object AppUtils {    
+		 @JvmStatic    
+    		fun install() {    
+    	}    
+	Now, we can call install() method from Java as below:    
+	AppUtils.install();    
 }
 
 8. what is JvmOverloads Annotation in Kotlin
@@ -85,35 +85,35 @@ I have try to make collection of interview questions-answer related to Android w
 	Kotlin support default parameters and Java support method overloading.
 	
 	Assume that we have a data class Session in Kotlin as below:
-	-data class Session(val name: String, val date: Date = Date())
-	-We can create the objects in Kotlin as below:
+	data class Session(val name: String, val date: Date = Date())
+	We can create the objects in Kotlin as below:
 	
-	val sessionOne = Session("Session One", Date())
+        val sessionOne = Session("Session One", Date())
 	val sessionTwo = Session("Session Two")
 	
 	Both the lines of the code will compile as expected as for the 2nd object, it -will take the default value of the Date.
 	
-	-But, when we create the objects from Java as below:
+	But, when we create the objects from Java as below:
 
-	-Session sessionOne = new Session("Session One", new Date());
-	-Session sessionTwo = new Session("Session Two"); // compilation error
-	-The first line will compile, but the second line will not as we have not passed Data as a parameter. It will give us the error:
+	Session sessionOne = new Session("Session One", new Date());
+	Session sessionTwo = new Session("Session Two"); // compilation error
+	The first line will compile, but the second line will not as we have not passed Data as a parameter. It will give us the error:
 	
 	As we know that Java does not support default parameters. It supports overloading.
 	So, we will have to use @JvmOverloads. It instructs the Kotlin compiler to generate overloads for the function that substitute default parameter values
 	
-	-Let's update our data class Session as below:
+	Let's update our data class Session as below:
 
-	-data class Session @JvmOverloads constructor(val name: String, val date: Date = Date())
-	-Notice that we have used @JvmOverloads to instruct the Kotlin compiler to generate overloads for the function.
+	data class Session @JvmOverloads constructor(val name: String, val date: Date = Date())
+	Notice that we have used @JvmOverloads to instruct the Kotlin compiler to generate overloads for the function.
 
-	-Now, if we create the objects from Java as below:
+	Now, if we create the objects from Java as below:
 
-	-Session sessionOne = new Session("Session One", new Date());
-	-Session sessionTwo = new Session("Session Two");
+	Session sessionOne = new Session("Session One", new Date());
+	Session sessionTwo = new Session("Session Two");
 	
-	-And, it works perfectly. Both the lines of the code will compile as expected as the Kotlin compiler has generated the overloads for the function.
+	And, it works perfectly. Both the lines of the code will compile as expected as the Kotlin compiler has generated the overloads for the function.
 
-	-This is how we can use the JvmOverloads annotation in Kotlin.
+	This is how we can use the JvmOverloads annotation in Kotlin.
 
 
