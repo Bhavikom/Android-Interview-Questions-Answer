@@ -154,6 +154,8 @@ I have try to make collection of interview questions-answer related to Android w
 	
 **10. lateinit vs lazy in Kotlin**	
 	
+	**lateinit**
+	
 	lateinit in Kotlin is useful in a scenario when we do not want to initialize a variable at the time of the declaration and want to initialize it at some later point in time, but we make sure that we initialize it before use.
 	
 	private var mentor: Mentor? = null // this is not proper way to declare variable with null
@@ -179,10 +181,12 @@ I have try to make collection of interview questions-answer related to Android w
 	} else {
 		// do something else
 	}
+	
 	Things to consider when we use the lateinit property:
-
-	-Can be only used with the var keyword.
+	 -Can be only used with the var keyword.
 	-Can be only used with a non-nullable variable.
 	-Should be used if the variable is mutable and can be initialized later.
 	-Should be used if you are sure about the initialization before use.
 	-This was about the lateinit property in Kotlin.
+	
+	**lazy**
