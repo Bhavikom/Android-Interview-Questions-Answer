@@ -190,3 +190,20 @@ I have try to make collection of interview questions-answer related to Android w
 	-This was about the lateinit property in Kotlin.
 	
 	**lazy**
+
+	For efficient memory management, Kotlin has introduced a new feature called as Lazy initialization. When the lazy keyword is used, the object will be created only when it is called, otherwise there will be no object creation. lazy() is a function that takes a lambda and returns an instance of lazy which can serve as a delegate of lazy properties upon which it has been applied. It has been designed to prevent unnecessary initialization of objects.
+
+	-Lazy can be used only with non-NULLable variables.
+	-Variable can only be val. "var" is not allowed .
+	-Object will be initialized only once. Thereafter, you receive the value from the cache memory.
+	-The object will not be initialized until it has been used in the application.
+
+Example
+In this example, we will declare a lazy variable "myName" and we could see that the call to this parts of the code will happen only once and when the value is initialized, it will remember the value throughout the application. Once the value is assigned using lazy initialization, it cannot be reassigned .
+
+class Demo {
+   val myName: String by lazy {
+      println("Welcome to Lazy declaration");
+      "www.tutorialspoint.com"
+   }
+}
