@@ -261,3 +261,31 @@ I have try to make collection of interview questions-answer related to Android w
         it.name = "ADITYA SHIDLYALI"
         println(it.name)
     }
+    
+    4. apply Function
+    
+    Refer to the context object by using 'this'
+    The return value is 'context object'
+    
+    val person2: Person = Person().apply {
+        this.name = "Aditya Shidlyali"
+        this.age += 25
+    }
+    // we can also do it by person2.apply {}
+
+    5. with function
+    
+    Refer to context object by using 'this'
+    The return value is 'lambda result'
+    
+    val person1: Person = Person()
+    // the person1 will get the name as ADITYA and age with increment of 5
+    with(person1) {
+        // we can refer the members using "this.name" and "this.age"
+        name = "ADITYA"
+        age += 25
+    }
+    // we can also assign the value of the with function
+    val age1: Int = with(person1) {
+        age + 5
+    }
