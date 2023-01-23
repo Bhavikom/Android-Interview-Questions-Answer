@@ -237,5 +237,27 @@ I have try to make collection of interview questions-answer related to Android w
         	age + 5
     	}	
 	
+	3. also function
 	
+	Refer to the context object by using 'it'
+	The return value is 'context object'
+	
+	// this is helpful in which there is further code or function call
+    val numbersList: MutableList<Int> = mutableListOf(1, 2, 3)
+    val numbersList1 = numbersList.also {
+        println("The numbers list is: $numbersList")
 
+        numbersList.add(100)
+        println("The numbers list is: $numbersList")
+
+        numbersList.remove(2)
+        println("The numbers list is: $numbersList")
+
+        // instead of numbersList object we can use 'it'
+    }
+    println(numbersList1)
+    // we can use the 'also' with the custom classes too
+    val person3: Person = Person().also {
+        it.name = "ADITYA SHIDLYALI"
+        println(it.name)
+    }
