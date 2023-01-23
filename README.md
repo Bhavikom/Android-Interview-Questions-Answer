@@ -154,7 +154,7 @@ I have try to make collection of interview questions-answer related to Android w
 	
 **10. lateinit vs lazy in Kotlin**	
 	
-   ###lateinit
+   #lateinit
 	
 	lateinit in Kotlin is useful in a scenario when we do not want to initialize a variable at the time of the declaration and want to initialize it at some later point in time, but we make sure that we initialize it before use.
 	
@@ -189,7 +189,7 @@ I have try to make collection of interview questions-answer related to Android w
 	-Should be used if you are sure about the initialization before use.
 	-This was about the lateinit property in Kotlin.
 	
-  ###lazy
+  #lazy
 
 	For efficient memory management, Kotlin has introduced a new feature called as Lazy initialization. When the lazy keyword is used, the object will be created only when it is called, otherwise there will be no object creation. lazy() is a function that takes a lambda and returns an instance of lazy which can serve as a delegate of lazy properties upon which it has been applied. It has been designed to prevent unnecessary initialization of objects.
 
