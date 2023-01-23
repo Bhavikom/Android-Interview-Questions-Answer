@@ -207,3 +207,35 @@ I have try to make collection of interview questions-answer related to Android w
             "www.tutorialspoint.com"
           }
        }
+      
+**9. Scope function in kotlin**     
+
+	1. let function
+	
+	generally used to prevent a NullPointerException from occurring. The let function returns the lambda result and the context object is the it identifier
+	
+	fun main (){
+		val name: String? = null
+			name?.let{
+			println(it.reversed)
+			println(it.length)
+		}
+	}
+	
+	2. run function
+	
+	Refer to the context object by using 'this'
+	The return value is 'lambda result'
+	
+	The special about the run function is, is a combination of with and let function
+    	* If developer wants to operate on Nullable object and avoid NullPointerException then use 'run' function
+	
+	val person4: Person? = Person() // the Person() can be null also
+    	val age: Int? = person4?.run {
+	        println(name)
+	        println(age)
+        	age + 5
+    	}	
+	
+	
+
