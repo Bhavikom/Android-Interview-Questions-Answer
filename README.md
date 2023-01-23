@@ -115,5 +115,41 @@ I have try to make collection of interview questions-answer related to Android w
 	And, it works perfectly. Both the lines of the code will compile as expected as the Kotlin compiler has generated the overloads for the function.
 
 	This is how we can use the JvmOverloads annotation in Kotlin.
+	
+**9. what is JvmField Annotation in Kotlin**
+
+	Assume that we have a data class Session in Kotlin as below:
+	data class Session(val name: String, val date: Date = Date())
+	We can create the object and get the name in Kotlin as below:
+
+	val session = Session("Session", Date())
+	val name = session.name
+	It works as expected.
+	But, when we create the object and get the name from Java as below:
+
+	Session session = new Session("Session", new Date());
+	String name = session.name; // compilation error
+	It will not compile. From Java, we will have to use the getter method as below:
+
+	Session session = new Session("Session", new Date());
+	String name = session.getName();
+	Now, it will compile and work as expected.
+
+	So, the question is: Can we use it without the getter method as we use in Kotlin?
+
+	The answer is yes. By using the JvmField annotation. So, if we want a field to be used as a normal field and not as a getter or setter then we will have to tell the compiler not to generate any getter and setter for the same and expose it as a field by using the @JvmField annotation.
+
+	Let's update our data class Session as below:
+
+	data class Session(@JvmField val name: String, val date: Date = Date())
+	Notice that we have used @JvmField over the field name to instruct the Kotlin compiler not to generate any getter and setter for the same and expose it as a field.
+
+	Now, if we create the object and get the name from Java as below:
+
+	Session session = new Session("Session", new Date());
+	String name = session.name;
+	Now, it works perfectly. It will compile as expected as the Kotlin compiler will not generate any getter and setter for the same and expose it as a field.
+
+	This is how we can use the JvmField annotation in Kotlin.
 
 
