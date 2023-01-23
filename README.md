@@ -151,5 +151,38 @@ I have try to make collection of interview questions-answer related to Android w
 	Now, it works perfectly. It will compile as expected as the Kotlin compiler will not generate any getter and setter for the same and expose it as a field.
 
 	This is how we can use the JvmField annotation in Kotlin.
+	
+**10. lateinit vs lazy in Kotlin**	
+	
+	lateinit in Kotlin is useful in a scenario when we do not want to initialize a variable at the time of the declaration and want to initialize it at some later point in time, but we make sure that we initialize it before use.
+	
+	private var mentor: Mentor? = null // this is not proper way to declare variable with null
+	
+	What if we do not want to make the variable nullable?
+	The answer is lateinit. Like this 
+	private lateinit var mentor: Mentor
+	
+	And later we can initialize the variable when we need it as below:
+	fun bookASlot() {
+		mentor = Mentor()
+	}
+	
+	But we must take care that we initialize the variable before accessing it, or else it will throw the following exception.
+	kotlin.UninitializedPropertyAccessException: lateinit property mentor has not been initialized
 
+	In Kotlin, we also have a way to check if the lateinit variable is initialized or not.
 
+	By using isInitialized:
+
+	if(this::mentor.isInitialized) {
+		// access mentor
+	} else {
+		// do something else
+	}
+	Things to consider when we use the lateinit property:
+
+	-Can be only used with the var keyword.
+	-Can be only used with a non-nullable variable.
+	-Should be used if the variable is mutable and can be initialized later.
+	-Should be used if you are sure about the initialization before use.
+	-This was about the lateinit property in Kotlin.
