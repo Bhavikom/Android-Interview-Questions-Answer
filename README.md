@@ -198,12 +198,12 @@ I have try to make collection of interview questions-answer related to Android w
 	-Object will be initialized only once. Thereafter, you receive the value from the cache memory.
 	-The object will not be initialized until it has been used in the application.
 
-Example
-In this example, we will declare a lazy variable "myName" and we could see that the call to this parts of the code will happen only once and when the value is initialized, it will remember the value throughout the application. Once the value is assigned using lazy initialization, it cannot be reassigned .
+        Example
+        In this example, we will declare a lazy variable "myName" and we could see that the call to this parts of the code will happen only once and when the value is 	       initialized, it will remember the value throughout the application. Once the value is assigned using lazy initialization, it cannot be reassigned .
 
-class Demo {
-   val myName: String by lazy {
-      println("Welcome to Lazy declaration");
-      "www.tutorialspoint.com"
-   }
-}
+           class Demo {
+            val myName: String by lazy {
+            println("Welcome to Lazy declaration");
+            "www.tutorialspoint.com"
+          }
+       }
