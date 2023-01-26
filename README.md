@@ -208,7 +208,7 @@ I have try to make collection of interview questions-answer related to Android w
           }
        }
       
-**9. Scope function in kotlin**     
+**11. Scope function in kotlin**     
 
 	1. let function
 	
@@ -289,3 +289,27 @@ I have try to make collection of interview questions-answer related to Android w
     val age1: Int = with(person1) {
         age + 5
     }
+    
+**12. difference between == and === in kotlin ?** 
+
+    Structural equality (==): It checks for equals().
+    Referential equality (===): It checks whether the two references point to the same object.
+    
+**13. Companion object in Kotlin **
+
+    We do not have a static keyword in Kotlin.
+    In Kotlin, we can call a method of a class without creating the object of that class with the use of a companion object
+    
+**14. Advantage of using const in Kotlin **
+
+    For ex. we have object like this
+    object Constants {
+    	const val NAME = "Amit"
+    }
+	
+    As the value has been inlined, there will be no overhead to access that variable at runtime. And hence, it will lead to a better performance of the application.
+    
+**15. 
+    
+
+
