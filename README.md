@@ -299,12 +299,12 @@ I have try to make collection of interview questions-answer related to Android w
     	Structural equality (==): It checks for equals().
     	Referential equality (===): It checks whether the two references point to the same object.
     
-**13. Companion object in Kotlin **
+**13. Companion object in Kotlin ?**
 
     	We do not have a static keyword in Kotlin.
     	In Kotlin, we can call a method of a class without creating the object of that class with the use of a companion object
     
-**14. Advantage of using const in Kotlin **
+**14. Advantage of using const in Kotlin ?**
 
     	For ex. we have object like this
     	object Constants {
@@ -512,7 +512,7 @@ I have try to make collection of interview questions-answer related to Android w
 	305 306 307 3 loop ends 
 	We are done
 	
-**21. What is an init block in Kotlin ? Difference between Constructor and init block ? **
+**21. What is an init block in Kotlin ? Difference between Constructor and init block ?**
 
 	Constructor is a block of code which get initialised when the object is created.
 	class SumOfNumbers {
