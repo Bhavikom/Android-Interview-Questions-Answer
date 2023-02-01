@@ -156,7 +156,8 @@ I have try to make collection of interview questions-answer related to Android w
 	
    #lateinit
 	
-	lateinit in Kotlin is useful in a scenario when we do not want to initialize a variable at the time of the declaration and want to initialize it at some later point in time, but we make sure that we initialize it before use.
+	lateinit in Kotlin is useful in a scenario when we do not want to initialize a variable at the time of the declaration and want to 
+	initialize it at some later point in time, but we make sure that we initialize it before use.
 	
 	private var mentor: Mentor? = null // this is not proper way to declare variable with null
 	
@@ -191,7 +192,10 @@ I have try to make collection of interview questions-answer related to Android w
 	
   #lazy
 
-	For efficient memory management, Kotlin has introduced a new feature called as Lazy initialization. When the lazy keyword is used, the object will be created only when it is called, otherwise there will be no object creation. lazy() is a function that takes a lambda and returns an instance of lazy which can serve as a delegate of lazy properties upon which it has been applied. It has been designed to prevent unnecessary initialization of objects.
+	For efficient memory management, Kotlin has introduced a new feature called as Lazy initialization. When the lazy keyword is used, 
+	the object will be created only when it is called, otherwise there will be no object creation. lazy() is a function that takes a 
+	lambda and returns an instance of lazy which can serve as a delegate of lazy properties upon which it has been applied. 
+	It has been designed to prevent unnecessary initialization of objects.
 
 	-Lazy can be used only with non-NULLable variables.
 	-Variable can only be val. "var" is not allowed .
@@ -243,8 +247,8 @@ I have try to make collection of interview questions-answer related to Android w
 	The return value is 'context object'
 	
 	// this is helpful in which there is further code or function call
-    val numbersList: MutableList<Int> = mutableListOf(1, 2, 3)
-    val numbersList1 = numbersList.also {
+    	val numbersList: MutableList<Int> = mutableListOf(1, 2, 3)
+    	val numbersList1 = numbersList.also {
         println("The numbers list is: $numbersList")
 
         numbersList.add(100)
@@ -254,60 +258,61 @@ I have try to make collection of interview questions-answer related to Android w
         println("The numbers list is: $numbersList")
 
         // instead of numbersList object we can use 'it'
-    }
-    println(numbersList1)
-    // we can use the 'also' with the custom classes too
-    val person3: Person = Person().also {
+    	}
+    	println(numbersList1)
+    	// we can use the 'also' with the custom classes too
+    	val person3: Person = Person().also {
         it.name = "ADITYA SHIDLYALI"
         println(it.name)
-    }
+    	}
     
-    4. apply Function
+   	 4. apply Function
+    	
+    	Refer to the context object by using 'this'
+    	The return value is 'context object'
     
-    Refer to the context object by using 'this'
-    The return value is 'context object'
-    
-    val person2: Person = Person().apply {
+    	val person2: Person = Person().apply {
         this.name = "Aditya Shidlyali"
         this.age += 25
-    }
-    // we can also do it by person2.apply {}
+    	}
+    	// we can also do it by person2.apply {}
 
-    5. with function
+    	5. with function
     
-    Refer to context object by using 'this'
-    The return value is 'lambda result'
+    	Refer to context object by using 'this'
+    	The return value is 'lambda result'
     
-    val person1: Person = Person()
-    // the person1 will get the name as ADITYA and age with increment of 5
-    with(person1) {
-        // we can refer the members using "this.name" and "this.age"
-        name = "ADITYA"
-        age += 25
-    }
-    // we can also assign the value of the with function
-    val age1: Int = with(person1) {
-        age + 5
-    }
+    	val person1: Person = Person()
+    	// the person1 will get the name as ADITYA and age with increment of 5
+    	with(person1) {
+        	// we can refer the members using "this.name" and "this.age"
+        	name = "ADITYA"
+        	age += 25
+    	}
+    	// we can also assign the value of the with function
+    	val age1: Int = with(person1) {
+        	age + 5
+    	}
     
 **12. difference between == and === in kotlin ?** 
 
-    Structural equality (==): It checks for equals().
-    Referential equality (===): It checks whether the two references point to the same object.
+    	Structural equality (==): It checks for equals().
+    	Referential equality (===): It checks whether the two references point to the same object.
     
 **13. Companion object in Kotlin **
 
-    We do not have a static keyword in Kotlin.
-    In Kotlin, we can call a method of a class without creating the object of that class with the use of a companion object
+    	We do not have a static keyword in Kotlin.
+    	In Kotlin, we can call a method of a class without creating the object of that class with the use of a companion object
     
 **14. Advantage of using const in Kotlin **
 
-    For ex. we have object like this
-    object Constants {
-    	const val NAME = "Amit"
-    }
+    	For ex. we have object like this
+    	object Constants {
+    		const val NAME = "Amit"
+    	}
 	
-    As the value has been inlined, there will be no overhead to access that variable at runtime. And hence, it will lead to a better performance of the application.
+    	As the value has been inlined, there will be no overhead to access that variable at runtime. And hence, it will lead to a better 
+	performance of the application.
     
 **15. Difference Between “const” and “val” in Kotlin ?**
 
@@ -360,8 +365,199 @@ I have try to make collection of interview questions-answer related to Android w
    		return "Hello Kotlin"
 	}
 	
+**16. What are the visibility modifiers in Kotlin ?**
+
+	There are four visibility modifiers in Kotlin: private, protected, internal, and public. The default visibility is public.
+	
+	![modi](https://user-images.githubusercontent.com/35212651/216007897-397197a0-fe03-4d2d-9348-afd7fbfb359a.jpg)
+	
+**17. What is the equivalent of Java static methods in Kotlin ?**
+
+	class Foo {
+  		companion object {
+     		fun a() : Int = 1
+  		}
+	}
+	You can then use it from inside Kotlin code as
+	Foo.a();
+	But from within Java code, you would need to call it as
+	Foo.Companion.a();
+	
+**18. How to create a Singleton class in Kotlin ?**
+
+	Singleton Class in Kotlin is also called as the Singleton Object in Kotlin. Singleton class is a class that is defined in such a 
+	way that only one instance of the class can be created and used everywhere. Many times we create the two different objects of the
+	same class, but we have to remember that creating two different objects also requires the allocation of two different memories for 
+	the objects. So it is better to make a single object and use it again and again. 
+	
+	*Properties of Singleton Class
+	
+	The following are the properties of a typical singleton class:
+
+	Only one instance: The singleton class has only one instance and this is done by providing an instance of the class, within the class.
+	Globally accessible: The instance of the singleton class should be globally accessible so that each class can use it.
+	Constructor not allowed: We can use the init method to initialize our member variables.
+	
+	Example : 
+	object Singleton {
+    		fun show() {
+        		println("This is Singleton class!")
+    		}
+	}
+	fun run() {
+    		Singleton.show()
+	}
+	
+**19. What is the difference between open and public in Kotlin ?**
+
+	Similarly to classes, properties and functions are also final by default in Kotlin. So, if we need to override any of them, 
+	we have to make them open in the parent class. Otherwise, the compiler will complain
+	
+	The open keyword allows classes, functions, and properties to be extended, while public is a visibility modifier that doesn’t have 
+	any explicit usage since all classes, functions, and properties are publicly visible by default.
+	
+**20. Label Reference in Kotlin ?**
+
+	List and array are two popular collections supported by Kotlin. By definition, both these collections allocate sequential memory location
+	
+	Any expression in Kotlin may be marked with a label. This can be used to as an identifier. A label can be defined in Kotlin using label 
+	name followed by @ sign in front of any expression.
+	
+	Let see example :- 
+  
+	loopi@ for( i in 1..5){
+     		print(i)
+ 	}
+	
+	These labels are really helpful when dealing with nested loops or nested functions.
+
+	Will explain the use cases in detail of label references but before that, we need to understand what are jump and return expressions.
+
+	break : Terminates the nearest enclosing loop.
+	continue : Proceeds to the next step of the nearest enclosing loop.
+	return : Return from the nearest enclosing function or anonymous function.
+	
+	Now let’s take an example of nested loop first to understand the use of label reference.
+  
+	for( i in 1..3){
+        	for (j in 5..7){
+            		print ((i * 100) + j)
+            		print(" ")
+        	}
+        	println( i.toString() + " loop ends")
+    	}
+	println("We are done")
+	
+	The output of the above code is
+ 
+	105 106 107 1 loop ends 
+	205 206 207 2 loop ends 
+	305 306 307 3 loop ends 
+	We are done
+	
+	Now in the above example, what if I want to break the i loop (means the entire execution of loops) when i equals to 2 and j 
+	equals to 6 but still want to execute below code of lines.
+
+	Means I want the output as
+  	105 106 107 1 loop ends 
+	205 
+	We are done
+	I’ll use a break statement with if condition (i == 2 && j == 6) inside the j loop and another if condition (i == 2) after execution of j loop.
+ 
+	for( i in 1..3){
+        	for (j in 5..7){
+            		if(i == 2 && j == 6) break
+            		print ((i * 100) + j)
+            		print(" ")
+        	}
+        	if(i == 2) break
+        	println( i.toString() + " loop ends")
+    	}
+	println("We are done")
+	We need to add two condition checks and break statements because the break statement only works for the nearest enclosing loop.
+
+	What if I say there is a better way to do the same in Kotlin.
+	Label the i loop and break the same loop using label reference by checking the condition inside the j loop.
+  
+	loopi@ for( i in 1..3){
+        	for (j in 5..7){
+            		if(i == 2 && j == 6) break@loopi
+            		print ((i * 100) + j)
+            		print(" ")
+        	}       	 
+        	println( i.toString() + " loop ends")
+    	}
+	println("We are done")
+
+	In the above code, we labelled the outer loop as loopi and while checking the condition we break the loop using the same label. 
+	And this will break the entire execution of the loops when the condition will be true.
+
+	The same can be used with continue expression also. The continue expression also works for the nearest enclosing loop but if we want
+	to continue the outer loop, we can use the label reference.
+  
+	loopi@ for( i in 1..3){
+        	for (j in 5..7){
+            		if(i == 2 && j == 6) continue@loopi
+            		print ((i * 100) + j)
+            		print(" ")
+        	}        
+        	println( i.toString() + " loop ends")
+    	}
+	println("We are done")
+
+	And the output will be
+  
+	105 106 107 1 loop ends 
+	205 
+	305 306 307 3 loop ends 
+	We are done
+	
+**21. What is an init block in Kotlin ? Difference between Constructor and init block ? **
+
+	Constructor is a block of code which get initialised when the object is created.
+	class SumOfNumbers {
+   		SumOfNumbers() {
+   		}
+	}
+	In Java, the constructor has the same name as of the class. But in Kotlin we have something different for 
+	constructors i.e Primary and Secondary constructors.
+	class Person(name:String,age:Int) {   
+	}
+	
+	This is an example of a Kotlin class having a primary constructor. But like java, if we have to perform some task in constructor 
+	how can we do that in Kotlin? Because this is not possible in the primary constructor.
+
+	Either we can use secondary constructor or we can use init block. Here, in this block, we will talk about the Init Block.
+
+	Let us understand the init block with an example.
+
+	In the above person class, we have to check if the person is older than me or not. We can do it using,
+
+	class Person(name: String, age: Int) {
+    		val isOlderThanMe = false
+    		val myAge = 25
+    		init {
+        		isOlderThanMe = age > myAge
+    		}
+	}
+	Here, we have initialized two variables isOlderThanMe and myAge with a default value is false and 25 respectively.
+
+	Now, in the init block, we check the age from the primary constructor with myAge and assign the value to isOlderThanMe . i.e. if
+	the age is greater than 25, value assigned will be true else false.
+
+	To check this,
+
+ 	var person = Person("Himanshu", 26)
+ 	print(person.isOlderThanMe)
+	This will print the desired result. As when we have initialized the Person class with passing data name as Himanshu and age as 26. 
+	The init block will also get called as the object is created and the value of isOlderThanMe has been updated based on the condition.
+
+	Points to Note:
+	The init block is always called after the primary constructor
+	A class file can have one or more init blocks executing in series i.e. one after another.
+	
+	
 	
 
-    
 
 
