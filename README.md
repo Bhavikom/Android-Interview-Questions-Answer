@@ -778,6 +778,57 @@ I have try to make collection of interview questions-answer related to Android w
 	Type of myClass: class java.lang.Integer
 	Name of your website -> 1
 	Type of myClass: class java.lang.Long
+	
+**28. What is a spread operator? What is the recommended place to use it ?**
+	
+	before understood spread(*) operator we have to dive into varang keyword
+	
+	Kotlin also supports declaring a function that can have a variable number of arguments. You can do that by prefixing parameter name 
+	with the vararg modifier: fun format(format: String, vararg args: Any)
+
+	vararg rules
+	In Java, the vararg parameter has to be the last one in the parameters list — so you can only have one vararg parameter. 
+	While in Kotlin, the vararg parameter doesn’t have to be the last one in the list, multiple vararg parameters are still prohibited.
+
+	Now let’s see how the decompiled corresponding Java source code looks like when declaring vararg parameters.
+
+	vararg param as the last one in list
+	Declaring vararg param as the last one in list, in a Kotlin function, looks like this:
+
+	fun format(format: String, vararg params: String)
+	and will be compiled into the corresponding Java code:
+
+	void format(@NotNull String format, @NotNull String... params)
+	Declaring params after the vararg
+	When vararg parameter is not the last one in list, like this:
+
+	fun format(format: String, vararg params: String, encoding: String)
+	it gets compiled into corresponding Java code:
+
+	void format(String format, String[] params, String encoding)
+	In conclusion, if vararg is not the last param it will be compiled as an array of parameter type.
+	
+	*spread operator 
+	
+	It’s Kotlin’s spread operator — the operator that unpacks an array into the list of values from the array. 
+	It is needed when you want to pass an array as the vararg parameter.
+	
+	Example : 
+	
+	If you try to call format function defined above like this:
+
+	val params = arrayOf("param1", "param2")
+	format(output, params)
+	it will fail with Type mismatch: inferred type is Array<String> but String was expected compilation error.
+
+	To fix this, you need to use spread operator to unpack params array into the corresponding values: format(output, *params)
+
+	Let’s see how the corresponding decompiled Java code looks like in this case:
+
+	String[] params = new String[]{"param1", "param2"};
+	format(output, (String[])Arrays.copyOf(params, params.length));
+	
+**29. What is the producer’s function? how to demonstrate it in Kotlin ?**
 
 
 
