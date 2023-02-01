@@ -705,7 +705,81 @@ I have try to make collection of interview questions-answer related to Android w
 	
 	**Kotlin is a statically typed language which means that it does most the check at compile time rather being dependent on runtime**
 	
+**24. Why Kotlin does not support primitive type ?**
+
+	Kotlin doesn't have primitive type (I mean you cannot declare primitive directly). It uses classes like Int, Float as an object wrapper for primitives.
 	
+	When kotlin code is converted to jvm code, whenever possible, "primitive object" is converted to java primitive. In some cases this cannot be done. 
+	Those cases are, for example, collection of "primitives". For example, List<Int> cannot contains primitive. So, compiler knows when it can 
+	convert object to primitive. And, again, it's very similar to java:
+
+	List<Integer> numbers = new ArrayList<>;
+
+	numbers.add(0); // <-- you use primitive, but in fact, JVM will convert this primitive to object.
+	numbers.add(new Integer(0)); // <-- We don't need do that.
+	Also, when you declare "nullable primitive" it is never converted to primitive (what is kind of obvious, as primitive cannot be null).
+	In java it works very similar:
+
+	int k = null; // No way!
+	Integer kN = null; // That's OK.
+	
+**25. Parameter vs Argument ?**
+	
+	Parameter is variable defined in function definition, while argument is actual value passed to the function.
+	To understand the difference, let’s first see an example function and its usage:
+
+	fun randomString(length: Int): String {
+    		// ....
+	}
+	randomString(10)
+	In this example length is a parameter, and 10 (used in function call) is an argument. Here are common definitions:
+
+**26. Difference between function and method ?**
+
+	'method' is the object-oriented word for 'function'. That's pretty much all there is to it (ie., no real difference).
+	
+	A function doesn’t need any object and is independent, while the method is a function, which is linked with any object.
+	We can directly call the function with its name, while the method is called by the object’s name.
+	Function is used to pass or return the data, while the method operates the data in a class.
+	Function is an independent functionality, while the method lies under object-oriented programming.	
+	In functions, we don’t need to declare the class, while to use methods we need to declare the class.
+	Functions can only work with the provided data, while methods can access all the data provided in the given class.
+	
+**27. What is reified keyword ?**
+
+	"reified" is a special type of keyword that helps Kotlin developers to access the information related to a class at runtime. 
+	"reified" can only be used with inline functions. When "reified" keyword is used, the compiler copies the function’s bytecode 
+	to every section of the code where the function has been called. In this way, the generic type T will be assigned to the 
+	type of the value it gets as an argument.
+	
+	For this example, we have created an Inline function and we are passing a generic "reified" argument T and from the main() of Kotlin, 
+	we are calling myExample() multiple times with different arguments.
+	
+	// Declaring Inline function
+	inline fun <reified T> myExample(name: T) {
+   		println("Name of your website -> "+name)
+   		println("Type of myClass: ${T::class.java}")
+	}
+	fun main() {
+   		// calling func() with String
+   		myExample<String>("www.tutorialspoint.com")
+   		// calling func() with Int value
+   		myExample<Int>(100)
+   		// calling func() with Long value
+   		myExample<Long>(1L)
+	}
+	
+	Output
+	It will generate the following output −
+
+	Name of your website -> www.tutorialspoint.com
+	Type of myClass: class java.lang.String
+	Name of your website -> 100
+	Type of myClass: class java.lang.Integer
+	Name of your website -> 1
+	Type of myClass: class java.lang.Long
+
+
 
 
 
