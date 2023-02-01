@@ -12,6 +12,17 @@ I have try to make collection of interview questions-answer related to Android w
 	-> 4. Eliminating Null References: - Safer Code    
 	-> 5. Solution To Some Of Java’s Flaws   
 	
+	Features of kotlin:
+
+	Extension function
+	High order function
+	Inter-operable with java
+	Null safety
+	Smart cast
+	Default and named arguments
+	Multi-value return from function
+	Data class	
+	
 **2. How to declare a variable in Kotlin?**
 
 	To declare a variable in Kotlin, either var or val keyword is used. Here is an example:    
@@ -512,7 +523,7 @@ I have try to make collection of interview questions-answer related to Android w
 	305 306 307 3 loop ends 
 	We are done
 	
-**21. What is an init block in Kotlin ? Difference between Constructor and init block ?**
+**21. What is an init block in Kotlin ?**
 
 	Constructor is a block of code which get initialised when the object is created.
 	class SumOfNumbers {
@@ -556,6 +567,143 @@ I have try to make collection of interview questions-answer related to Android w
 	The init block is always called after the primary constructor
 	A class file can have one or more init blocks executing in series i.e. one after another.
 	
+**22. Difference between Constructor and init block ?**
+
+	The init block will execute immediately after the primary constructor. Initializer blocks effectively become part of the primary constructor.
+
+	The constructor is the secondary constructor. Delegation to the primary constructor happens as the first statement of a 
+	secondary constructor, so the code in all initializer blocks is executed before the secondary constructor body.
+	
+**23. What is Pair and Triple in Kotlin ?**
+
+	In any programming language, we use functions to perform a particular activity. For eg. , if you want to add the details of students of a 
+	college then instead of writing the same lines of code a number of times, you can use the concept of a function . And after that, 
+	you can call that function as many times as you want. Also, the best part of the function is that a function can return some value i.e. 
+	if you are having a function to add two numbers then the return value of that function can be a number of integer type having the sum of 
+	both the entered numbers.
+
+	But functions has some limitations also(when used normally). Think of a situation, where you want the name and age of a particular 
+	student of a college, then if you want to use the function approach then you can return only one value at a time. If you want to return
+	more than one value for different data type (in our example, name is of string type, while age is of type integer), then you have to make 
+	use of dummy class where you can declare all the variables that you want to return from the function and after that make an object of the 
+	class and collect the returned value in some List.
+
+	But the problem here is that if you are having so many things to do i.e. so many functions to work on which returns more than one value 
+	then you have to make a separate class for all those functions and finally use that class. This will be a very complex and lengthy approach.
+
+	To deal with these type of situations, Kotlin introduced the concept of Pair and Triple . 
+	With the help of Pair and Triple you can return more than one value(two in case of pair and three in case of the triple) of different data types.
+
+	So, in this blog, we will learn how to use pairs and triples in Kotlin. So, let’s get started.
+
+*pair
+	
+	Pair is a predefined class in Kotlin that is used to store and return two variables at a time. Those two variables can be of the same 
+	type or of a different type. So, whenever you want to return more than one variable from a function then you can use Pair in your function. 
+	But how to use Pair ? Let’s have a look at how to use Pair in Kotlin:
+
+	Pair ("Hello", "Kotlin") // here both the variables are of type string
+	Pair ("Kotlin", 1) // here 1st variable is of type string and other is type of integer
+	Pair (2, 20) // here both the variables are of integer type
+	You can use pair as described above. Also you can define some variable and then pass that variable in the Pair. Following example shows the same:
+
+	val variable1 = "Declaring String variable"
+	val variable2 = 1 // declaring integer value
+
+	Pair (variable1, variable2) // using declared variable in Pair class
+	Using first and second property
+	In order to retrieve the values stored in the Pair, we can use the first and second property of the Pair class:
+
+	val variable1 = "Declaring String variable"
+	val variable2 = 1 // declaring integer value
+
+	val variableName = Pair (variable1, variable2) // using declared variable in Pair class
+
+	println(variableName.first) // will print the value of variable1
+	println(variableName.second) // will print the value of variable2
+	Also, you can assign the variables of the Pair to another variable and use those variables like below:
+
+	val(firstVariable, secondVariable) = Pair("Hello", 1)
+	println(firstVariable)
+	println(secondVariable)
+
+	Infix
+	In kotlin, we can use easily destructure the variable declaration using to infix function.
+
+	fun getWebsite() : Pair<String, String> {
+  		return "www.mindorks.com" to "the Website is"
+	}
+	and declare the getWebsite() function as,
+	val (url: String, website: String) = getWebsite()
+	// print(url)
+	//print(website)
+	toString() function
+	toString() is a function that is used to convert the variables of the pair into string and use that variables as string.
+	
+
+	val variableName = Pair (variable1, variable2) // using declared variable in Pair class
+	print(variableName.toString())
+	toList() function
+	toList() function converts the Pair variable in form of List i.e. you can use the Pair variables just like List items.
+
+	val variable1 = "Declaring String variable"
+	val variable2 = 1 // declaring integer value
+
+	val variableName = Pair (variable1, variable2) // using declared variable in Pair class
+	val list = variableName.toList()
+
+	println(list[0]) // this will print the value of variable1
+	println(list[1]) // this will print the value of variable2
+	
+*Triple
+	
+	Triple is another predefined class in Kotlin. With the help of Triple class in Kotlin, you can return 3 variables of same or different 
+	type from one function. Also, you can use Triple class to store 3 variables of same or different type.
+
+	The use of Triple is the same as that of Pair in Kotlin. Following example shows the use of Triple in Kotlin:
+
+	val variable1 = "Declaring String variable"
+	val variable2 = 1 // declaring integer value
+	val variable3 = "Declaring second string value"
+
+	val variableName = Triple (variable1, variable2, variable3) // using declared variable in Triple class
+
+	println(variableName.first) // will print the value of variable1
+	println(variableName.second) // will print the value of variable2
+	println(variableName.third) // will print the value of variable3
+	Also, there are functions like toString() and toList(), that can be used in Triple also, in the same manner as used in the Pair.
+	Following example shows the use of toString() and toList() in Triple:
+
+	val variable1 = "Declaring String variable"
+	val variable2 = 1 // declaring integer value
+	val variable3 = "Declaring second string value"
+
+	val variableName = Triple (variable1, variable2, variable3) // using declared variable in Triple class
+
+	println(variableName.toString())
+
+	val list = variableName.toList()
+	println(list[0]) // prints the first element of the list or variable1
+	println(list[1]) // prints the second element of the list or variable2
+	println(list[2]) /
+
+**23. Statically Type vs Dynamically Typed Languages. Kotlin is which type of language ?**
+
+	Simply put it this way: in a statically typed language variables' types are static, meaning once you set a variable to a type,
+	you cannot change it. That is because typing is associated with the variable rather than the value it refers to.
+
+	For example in Java:
+	String str = "Hello";   // variable str statically typed as string
+	str = 5;                // would throw an error since str is
+                       	        // supposed to be a string only
+	Where on the other hand: in a dynamically typed language variables' types are dynamic, meaning after you set a variable to a type, 
+	you CAN change it. That is because typing is associated with the value it assumes rather than the variable itself.
+
+	For example in Python:
+	some_str = "Hello"  # variable some_str is linked to a string value
+	some_str = 5        # now it is linked to an integer value; perfectly OK
+	
+	**Kotlin is a statically typed language which means that it does most the check at compile time rather being dependent on runtime**
 	
 	
 
