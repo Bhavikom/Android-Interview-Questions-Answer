@@ -828,7 +828,18 @@ I have try to make collection of interview questions-answer related to Android w
 	String[] params = new String[]{"param1", "param2"};
 	format(output, (String[])Arrays.copyOf(params, params.length));
 	
-**29. What is the producer’s function? how to demonstrate it in Kotlin ?**
+**29. Explain Safe call(?.),Elvis(?:), and not-null assertion-(double-bang operator)(!!) operator ?**
+
+	the ?. safe call opeator avoid null pointer exception and check null value
+	
+	the !! operator will raising KotlinNullPointerException when operates on a null reference, for example:
+	null!!;// raise NullPointerException
+	
+	The ?: elvis operator in Kotlin is used for null safety.
+	x = a ?: b
+	In the above code, x will be assigned the value of a if a is not null and b if a is null.
+	The equivalent kotlin code without using the elvis operator is below:
+	x = if(a == null) b else a
 
 
 
