@@ -309,7 +309,59 @@ I have try to make collection of interview questions-answer related to Android w
 	
     As the value has been inlined, there will be no overhead to access that variable at runtime. And hence, it will lead to a better performance of the application.
     
-**15. 
+**15. Difference Between “const” and “val” in Kotlin ?**
+
+	*Use of const in Kotlin
+    
+    	The const keyword is used in Kotlin whenever the variable value remains const throughout the lifecycle of an application. 
+    	It means that const is applied only on immutable properties of the class. In simple words, use const to declare a read-only property of a class.
+
+    	There are some constraints that are applied to the const variable. They are as follows −
+
+   	const can only be applied to the immutable property of a class.
+
+     	It cannot be assigned to any function or any class constructor. It should be assigned with a primitive data type or String.
+
+     	The const variable will be initialized at compile-time.
+	
+	In the following example, we will declare a const variable and we will use the same variable in our application.
+	
+	const val sName = "tutorialspoint";
+	// This line will throw an error as we cannot
+	// use Const with any function call.
+	// const val myFun = MyFunc();
+	fun main() {
+   		println("Example of Const-Val--->"+sName);
+	}
+	
+	*Val Keyword
+	
+	In Kotlin, val is also used for declaring a variable. Both "val" and "const val" are used for declaring read-only properties of a class. 
+	The variables declared as const are initialized at the runtime.
+
+	val deals with the immutable property of a class, that is, only read-only variables can be declared using val.
+
+	val is initialized at the runtime.
+
+	For val, the contents can be muted, whereas for const val, the contents cannot be muted.
+
+	Example
+	We will modify the previous example in order to pass a function using val and we won't get any errors at runtime.
+	
+	const val sName = "tutorialspoint";
+
+	// We can pass function using val
+	val myfun=MyFunc();
+	fun main() {
+   		println("Example of Const-Val--->"+sName);
+   		println("Example of Val--->"+myfun);
+	}
+	fun MyFunc(): String {
+   		return "Hello Kotlin"
+	}
+	
+	
+
     
 
 
