@@ -313,6 +313,25 @@ I have try to make collection of interview questions-answer related to Android w
 
     	Structural equality (==): It checks for equals().
     	Referential equality (===): It checks whether the two references point to the same object.
+	
+	In this example, we will demonstrate how these two operators ("==" and "===") work.
+	
+	fun main(args: Array<String>) {
+   	val student1 = "Ram"
+   	val student2 = "shyam"
+   	val student4 = "Ram"
+
+   	val student3=student1
+
+   	// prints true as both pointing to the same object
+   	println(student1 === student3)
+
+   	// prints false
+   	println(student1 === student2)
+
+   	//prints true
+   	println(student1 == student4)
+}
     
 **13. Companion object in Kotlin ?**
 
