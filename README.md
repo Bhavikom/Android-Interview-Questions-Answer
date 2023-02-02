@@ -216,7 +216,9 @@ I have try to make collection of interview questions-answer related to Android w
 	-The object will not be initialized until it has been used in the application.
 
         Example
-        In this example, we will declare a lazy variable "myName" and we could see that the call to this parts of the code will happen only once and when the value is 	       initialized, it will remember the value throughout the application. Once the value is assigned using lazy initialization, it cannot be reassigned .
+        In this example, we will declare a lazy variable "myName" and we could see that the call to this parts of the code will happen only 
+	once and when the value is initialized, it will remember the value throughout the application. Once the value is assigned using lazy 
+	initialization, it cannot be reassigned .
 
            class Demo {
             val myName: String by lazy {
