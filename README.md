@@ -866,7 +866,7 @@ I have try to make collection of interview questions-answer related to Android w
 	The equivalent kotlin code without using the elvis operator is below:
 	x = if(a == null) b else a
 
-**30. Room vs Realm ? why not Realm ?
+**30. Room vs Realm ? why not Realm ?**
 
 	Realm
 	A relatively fast and convenient library, all links are simply implemented, which is related to the object orientation of the database. .
