@@ -150,12 +150,14 @@ I have try to make collection of interview questions-answer related to Android w
 
 	So, the question is: Can we use it without the getter method as we use in Kotlin?
 
-	The answer is yes. By using the JvmField annotation. So, if we want a field to be used as a normal field and not as a getter or setter then we will have to tell the compiler not to generate any getter and setter for the same and expose it as a field by using the @JvmField annotation.
+	The answer is yes. By using the JvmField annotation. So, if we want a field to be used as a normal field and not as a getter or setter 
+	then we will have to tell the compiler not to generate any getter and setter for the same and expose it as a field by using the @JvmField annotation.
 
 	Let's update our data class Session as below:
 
 	data class Session(@JvmField val name: String, val date: Date = Date())
-	Notice that we have used @JvmField over the field name to instruct the Kotlin compiler not to generate any getter and setter for the same and expose it as a field.
+	Notice that we have used @JvmField over the field name to instruct the Kotlin compiler not to generate any getter and setter for the
+	same and expose it as a field.
 
 	Now, if we create the object and get the name from Java as below:
 
