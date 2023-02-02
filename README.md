@@ -231,87 +231,199 @@ I have try to make collection of interview questions-answer related to Android w
       
 **11. Scope function in kotlin**     
 
+	In Kotlin, scope functions are used to execute a block of code within the scope of an object. Generally, you can use scope functions to 
+	wrap a variable or a set of logic and return an object literal as your result. Therefore, we can access these objects without their names.
+	There are five types of scope functions in Kotlin: let, with, run, apply, and also. Let’s consider these examples and their unique use cases.
+	
+	There are many similarities between these five scope functions based on their similar operations, however, they differ in whether 
+	they return a lambda result or context object. They also vary in whether you refer to the context object using the this or the it keyword.
+	
 	1. let function
 	
-	generally used to prevent a NullPointerException from occurring. The let function returns the lambda result and the context object is the it identifier
-	
+	The let function has numerous applications, but it is generally used to prevent a NullPointerException from occurring. 
+	The let function returns the lambda result and the context object is the it identifier. Let’s consider the following example:
+
 	fun main (){
 		val name: String? = null
-			name?.let{
-			println(it.reversed)
-			println(it.length)
+		println(name!!.reversed)
+		println(name.length)
+	}
+    
+    	2. with function
+	
+	The with function has a return type as the lambda result, and the context object is the this keyword, which refers to the object itself. 
+	Let’s consider the example in the code snippet below:
+
+	class Person{
+   		var firstName: String = "Elena Wilson"
+   		var age: Int = 28
+	}
+	fun main() {
+  		val person = Person()
+  		println(person.firstName)
+  		println(person.age)
+	}
+	In the code snippet above, we created a Person class and assigned some properties, firstName and age. Next, in our main function, 
+	we printed out the values using println, which is used for cli output.
+
+	Let’s imagine that we had over twenty properties in the Person class, which would result in multiple code repetitions. 
+	We can correct this by using the with function and passing the person object in the lambda expression using the this keyword:
+	
+	val person = Person()
+	val personInfo : String = with (person){
+ 		println(this.firstName)
+ 		println(this.age)
+ 		age + 10
+		"I love the game of football"
 		}
+		println(personInfo)
+	}
+	The value produced is “I love the game of football”. In summary, the with function returns a lambda function and uses the this 
+	keyword as the context object.
+	
+	3. run function
+	
+	The run function returns the lambda result, and we refer to the context object by using the this keyword. The run function is a 
+	combination of the with and let functions. Let’s consider the example in the code snippet below:
+
+	fun main {
+		val person: Person? = Person()
+		val bio = person?.run {
+ 			println(name)
+ 			println(age)
+			"LogRocket rocks!!!"
+   		}
+		println(bio)
 	}
 	
-	2. run function
+	Assuming we decide to assign a null value to the person object, we’d have to prevent a NullPointerException from occurring. 
+	We can achieve this by calling the run function with the person object. Next, we’ll return the lambda function bio.
 	
-	Refer to the context object by using 'this'
-	The return value is 'lambda result'
+	4. apply function
 	
-	The special about the run function is, is a combination of with and let function
-    	* If developer wants to operate on Nullable object and avoid NullPointerException then use 'run' function
-	
-	val person4: Person? = Person() // the Person() can be null also
-    	val age: Int? = person4?.run {
-	        println(name)
-	        println(age)
-        	age + 5
-    	}	
-	
-	3. also function
-	
-	Refer to the context object by using 'it'
-	The return value is 'context object'
-	
-	// this is helpful in which there is further code or function call
-    	val numbersList: MutableList<Int> = mutableListOf(1, 2, 3)
-    	val numbersList1 = numbersList.also {
-        println("The numbers list is: $numbersList")
+	apply is a higher order function. The apply function returns a context object, and the context object returns this. Let’s consider the following example:
 
-        numbersList.add(100)
-        println("The numbers list is: $numbersList")
+	val car = Car()
+  	var carName: String = ""
+  	var carColor: String = ""
 
-        numbersList.remove(2)
-        println("The numbers list is: $numbersList")
+	fun main {
+ 		val car = Car().apply {
+ 		carName = "Lamborghini"
+ 		carColor = "Navy blue"
+   		}
+	}
+ 	with(car){
+ 		println(carName)
+ 		println(carColor)
+  	}
+	
+	5. also function
+	
+	The also function is similar to the previous functions in that it is used to perform an operation on a particular object 
+	after it has been initialized. The also function returns the context object, and the context object can be referred to using 
+	the it identifier. Let’s refer to the code snippet below for further detail:
 
-        // instead of numbersList object we can use 'it'
-    	}
-    	println(numbersList1)
-    	// we can use the 'also' with the custom classes too
-    	val person3: Person = Person().also {
-        it.name = "ADITYA SHIDLYALI"
-        println(it.name)
-    	}
-    
-   	 4. apply Function
-    	
-    	Refer to the context object by using 'this'
-    	The return value is 'context object'
-    
-    	val person2: Person = Person().apply {
-        this.name = "Aditya Shidlyali"
-        this.age += 25
-    	}
-    	// we can also do it by person2.apply {}
+	fun main(){
+		val numberList: mutableList<Int> = mutableListOf(1,2,4,5)
+    		numberList.also{
+			println("The list of items are: $numberList")
+			numberList.add(6)
+			println("The list of items after adding an element are: $numberList")
+			numberList.remove(4)
+			println("The list of items after removing an element are: $numberList")
+    		}
+	}
+	
+	From the code above, we created a numbersList object with five integer values and performed some operations under the numbersList object. 
+	We then utilized the also function. Note that in the also function, we can refer to the numberList by using the it identifier, 
+	as seen in the code snippet below:
 
-    	5. with function
-    
-    	Refer to context object by using 'this'
-    	The return value is 'lambda result'
-    
-    	val person1: Person = Person()
-    	// the person1 will get the name as ADITYA and age with increment of 5
-    	with(person1) {
-        	// we can refer the members using "this.name" and "this.age"
-        	name = "ADITYA"
-        	age += 25
-    	}
-    	// we can also assign the value of the with function
-    	val age1: Int = with(person1) {
-        	age + 5
-    	}
-    
-**12. difference between == and === in kotlin ?** 
+	fun main(){
+
+		val numberList: mutableList<Int> = mutableListOf(1,2,4,5)
+     		val multipleNumbers = numberList.also {
+			println("The list of items are: $it")
+			it.add(6)
+			println("The list of items after adding an element are: $it")
+			it.remove(4)
+			println("The list of items after removing an element are: $it")
+    		}
+		println("The original numbers are: $numberList")
+		println("The multipleNumbers are: $multipleNumbers)
+	}
+	Another way to implement the also function is using the it and also keywords like in the code snippet below. 
+	We use the also function to modify the value of the firstName variable by assigning Eden Peter to it:
+
+	fun main {
+ 		val person = Person().apply {
+ 		firstName = "Eden Elenwoke"
+ 		age = 22	
+   		}
+ 		with(person){
+ 		println(firstName)
+ 		println(age)
+  		}	
+
+		person.also{
+ 			it.firstName = "Eden Peter"
+			println("My new name is: + ${it.firstName}")
+ 		}
+	}
+	
+**12. When and how to use Kotlin scope functions ?**
+
+	Using scope functions in the right place might seem a bit tricky at first, but it largely depends on what we want to achieve with project. 
+	Let’s refer the summary below as a guide to inform us on which scope function to use for each unique use case:
+
+	apply: You want to configure or initialize an object
+	with: You want to operate on a non-null object
+	let: You want to execute a lambda function on a nullable object and avoid NullPointException
+	run: You want to operate on a nullable object, execute a lambda expression, and avoid NullPointerException. This is the combination 
+		of the with and let function features
+	also: You want to perform some additional object operations and configurations 
+	
+**13. Comparing Kotlin scope functions with normal functions ?**
+
+	Let’s compare a scope function and a normal function with a few examples. Let’s consider a normal function using a class named
+	Student with three attributes, studentName, studentNumber, and studentAge, like below:
+
+	Class Student {
+   		var studentName : String? = null
+   		var studentNumber : String? = null
+   		var studentAge : Int? = null
+	}
+	With the code snippet below, we instantiate our class and assign values to it:
+
+	val student = Student ()
+	student.studentName = "Peter Aideloje"
+	student.studentNumber = 08012345678
+	student.studentAge = 28
+	Using a scope function can help us to achieve the same results as above in a simpler and cleaner way with less code. 
+	Let’s compare our expression above with a scope function in the code snippet below:
+
+	val person = Student().apply{
+    		studentName = "Peter Aideloje"
+    		studentNumber = 08012345678
+    		studentAge = 28
+	}
+	In the code snippet above, we instantiate the Student object and call the apply function. 
+	Then, we assign the studentName, studentNumber, and studentAge properties within the lambda expression.
+
+	When we compare the scope function and the normal function in the examples above, we notice that we successfully eliminated 
+	code repetition where the student object name was repeated multiple times. Using a scope function makes our code more concise 
+	and readable, and we initialized our properties without using the student object name.
+	
+**14. Benefits of using scope functions ?**
+
+	We have come to realize some benefits of using scope functions:
+
+	Reduced boilerplate code
+	More concise and precise code
+	Reduced code repetition
+	Enhanced code readability
+	
+**15 difference between == and === in kotlin ?** 
 
     	Structural equality (==): It checks for equals().
     	Referential equality (===): It checks whether the two references point to the same object.
@@ -335,12 +447,12 @@ I have try to make collection of interview questions-answer related to Android w
    	println(student1 == student4)
 }
     
-**13. Companion object in Kotlin ?**
+**16 Companion object in Kotlin ?**
 
     	We do not have a static keyword in Kotlin.
     	In Kotlin, we can call a method of a class without creating the object of that class with the use of a companion object
     
-**14. Advantage of using const in Kotlin ?**
+**17 Advantage of using const in Kotlin ?**
 
     	For ex. we have object like this
     	object Constants {
@@ -350,7 +462,7 @@ I have try to make collection of interview questions-answer related to Android w
     	As the value has been inlined, there will be no overhead to access that variable at runtime. And hence, it will lead to a better 
 	performance of the application.
     
-**15. Difference Between “const” and “val” in Kotlin ?**
+**18 Difference Between “const” and “val” in Kotlin ?**
 
 	*Use of const in Kotlin
     
@@ -401,13 +513,14 @@ I have try to make collection of interview questions-answer related to Android w
    		return "Hello Kotlin"
 	}
 	
-**16. What are the visibility modifiers in Kotlin ?**
+**19 What are the visibility modifiers in Kotlin ?**
 
 	There are four visibility modifiers in Kotlin: private, protected, internal, and public. The default visibility is public.
 	
 	![modi](https://user-images.githubusercontent.com/35212651/216007897-397197a0-fe03-4d2d-9348-afd7fbfb359a.jpg)
 	
-**17. What is the equivalent of Java static methods in Kotlin ?**
+	
+**20.what is the equivalent of Java static methods in Kotlin ?**
 
 	class Foo {
   		companion object {
@@ -419,7 +532,7 @@ I have try to make collection of interview questions-answer related to Android w
 	But from within Java code, you would need to call it as
 	Foo.Companion.a();
 	
-**18. How to create a Singleton class in Kotlin ?**
+**21 How to create a Singleton class in Kotlin ?**
 
 	Singleton Class in Kotlin is also called as the Singleton Object in Kotlin. Singleton class is a class that is defined in such a 
 	way that only one instance of the class can be created and used everywhere. Many times we create the two different objects of the
@@ -444,7 +557,7 @@ I have try to make collection of interview questions-answer related to Android w
     		Singleton.show()
 	}
 	
-**19. What is the difference between open and public in Kotlin ?**
+**22 What is the difference between open and public in Kotlin ?**
 
 	Similarly to classes, properties and functions are also final by default in Kotlin. So, if we need to override any of them, 
 	we have to make them open in the parent class. Otherwise, the compiler will complain
@@ -452,7 +565,7 @@ I have try to make collection of interview questions-answer related to Android w
 	The open keyword allows classes, functions, and properties to be extended, while public is a visibility modifier that doesn’t have 
 	any explicit usage since all classes, functions, and properties are publicly visible by default.
 	
-**20. Label Reference in Kotlin ?**
+**23 Label Reference in Kotlin ?**
 
 	List and array are two popular collections supported by Kotlin. By definition, both these collections allocate sequential memory location
 	
@@ -548,7 +661,7 @@ I have try to make collection of interview questions-answer related to Android w
 	305 306 307 3 loop ends 
 	We are done
 	
-**21. What is an init block in Kotlin ?**
+**24 What is an init block in Kotlin ?**
 
 	Constructor is a block of code which get initialised when the object is created.
 	class SumOfNumbers {
@@ -592,14 +705,14 @@ I have try to make collection of interview questions-answer related to Android w
 	The init block is always called after the primary constructor
 	A class file can have one or more init blocks executing in series i.e. one after another.
 	
-**22. Difference between Constructor and init block ?**
+**25 Difference between Constructor and init block ?**
 
 	The init block will execute immediately after the primary constructor. Initializer blocks effectively become part of the primary constructor.
 
 	The constructor is the secondary constructor. Delegation to the primary constructor happens as the first statement of a 
 	secondary constructor, so the code in all initializer blocks is executed before the secondary constructor body.
 	
-**23. What is Pair and Triple in Kotlin ?**
+**26 What is Pair and Triple in Kotlin ?**
 
 	In any programming language, we use functions to perform a particular activity. For eg. , if you want to add the details of students of a 
 	college then instead of writing the same lines of code a number of times, you can use the concept of a function . And after that, 
@@ -712,7 +825,7 @@ I have try to make collection of interview questions-answer related to Android w
 	println(list[1]) // prints the second element of the list or variable2
 	println(list[2]) /
 
-**23. Statically Type vs Dynamically Typed Languages. Kotlin is which type of language ?**
+**27 Statically Type vs Dynamically Typed Languages. Kotlin is which type of language ?**
 
 	Simply put it this way: in a statically typed language variables' types are static, meaning once you set a variable to a type,
 	you cannot change it. That is because typing is associated with the variable rather than the value it refers to.
@@ -730,7 +843,7 @@ I have try to make collection of interview questions-answer related to Android w
 	
 	**Kotlin is a statically typed language which means that it does most the check at compile time rather being dependent on runtime**
 	
-**24. Why Kotlin does not support primitive type ?**
+**28 Why Kotlin does not support primitive type ?**
 
 	Kotlin doesn't have primitive type (I mean you cannot declare primitive directly). It uses classes like Int, Float as an object wrapper for primitives.
 	
@@ -748,7 +861,7 @@ I have try to make collection of interview questions-answer related to Android w
 	int k = null; // No way!
 	Integer kN = null; // That's OK.
 	
-**25. Parameter vs Argument ?**
+**29 Parameter vs Argument ?**
 	
 	Parameter is variable defined in function definition, while argument is actual value passed to the function.
 	To understand the difference, let’s first see an example function and its usage:
@@ -759,7 +872,7 @@ I have try to make collection of interview questions-answer related to Android w
 	randomString(10)
 	In this example length is a parameter, and 10 (used in function call) is an argument. Here are common definitions:
 
-**26. Difference between function and method ?**
+**30 Difference between function and method ?**
 
 	'method' is the object-oriented word for 'function'. That's pretty much all there is to it (ie., no real difference).
 	
@@ -770,7 +883,7 @@ I have try to make collection of interview questions-answer related to Android w
 	In functions, we don’t need to declare the class, while to use methods we need to declare the class.
 	Functions can only work with the provided data, while methods can access all the data provided in the given class.
 	
-**27. What is reified keyword ?**
+**31 What is reified keyword ?**
 
 	"reified" is a special type of keyword that helps Kotlin developers to access the information related to a class at runtime. 
 	"reified" can only be used with inline functions. When "reified" keyword is used, the compiler copies the function’s bytecode 
@@ -804,7 +917,7 @@ I have try to make collection of interview questions-answer related to Android w
 	Name of your website -> 1
 	Type of myClass: class java.lang.Long
 	
-**28. What is a spread operator? What is the recommended place to use it ?**
+**32 What is a spread operator? What is the recommended place to use it ?**
 	
 	before understood spread(*) operator we have to dive into varang keyword
 	
@@ -853,7 +966,7 @@ I have try to make collection of interview questions-answer related to Android w
 	String[] params = new String[]{"param1", "param2"};
 	format(output, (String[])Arrays.copyOf(params, params.length));
 	
-**29. Explain Safe call(?.),Elvis(?:), and not-null assertion-(double-bang operator)(!!) operator ?**
+**33 Explain Safe call(?.),Elvis(?:), and not-null assertion-(double-bang operator)(!!) operator ?**
 
 	the ?. safe call opeator avoid null pointer exception and check null value
 	
@@ -866,7 +979,7 @@ I have try to make collection of interview questions-answer related to Android w
 	The equivalent kotlin code without using the elvis operator is below:
 	x = if(a == null) b else a
 
-**30. Room vs Realm ? why not Realm ?**
+**34 Room vs Realm ? why not Realm ?**
 
 	Realm
 	A relatively fast and convenient library, all links are simply implemented, which is related to the object orientation of the database. .
