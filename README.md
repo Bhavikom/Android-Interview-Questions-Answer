@@ -994,14 +994,34 @@ I have try to make collection of interview questions-answer related to Android w
 	to problems that occur along with it.
 
 	Realm uses more RAM and increases the apk size, build time. So I prefer Room.
+
+** What is Lambda Expression in Kotlin ?**
+
+	Lambda expression or simply lambda is an anonymous function; a function without name. 
+	These functions are passed immediately as an expression without declaration. For example,
+
+	fun main(args: Array<String>) {
+    		val greeting = { println("Hello!")}
+    		// invoking function
+    		greeting()
+	}
 	
-**35 what is architecutre  ?**
+	Example: Lambda With Parameters and Return Type
+	The program below has a lambda expression that accepts two integers as parameters, and returns the product of those two integers.
+
+	fun main(args: Array<String>) {
+    		val product = { a: Int, b: Int -> a * b }
+    		val result = product(9, 3)
+    		println(result)
+	}
+	
+**36 what is architecutre  ?**
 
 	Architecture means the overall design of the project. It’s the organization of the code into classes or files or components or modules. 
 	And it’s how all these groups of code relate to each other. The architecture defines where the application performs its core functionality
 	and how that functionality interacts with things like the database and the user interface.
 	
-**36 
+**37 
 
 	
 	
