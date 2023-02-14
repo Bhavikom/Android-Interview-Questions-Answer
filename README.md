@@ -1021,7 +1021,13 @@ I have try to make collection of interview questions-answer related to Android w
 	And it’s how all these groups of code relate to each other. The architecture defines where the application performs its core functionality
 	and how that functionality interacts with things like the database and the user interface.
 	
-**37 
+**37 Why kotlin coroutines are considered light weight ?**
+
+	Every Thread has its own stack, typically 1MB. 64k is the least amount of stack space allowed per thread in the JVM while a 
+	simple coroutine in Kotlin occupies only a few dozen bytes of heap memory.
+	
+	Lightweight: You can run many coroutines on a single thread due to support for suspension, which doesn't block the thread 
+	where the coroutine is running. Suspending saves memory over blocking while supporting many concurrent operations.
 
 	
 	
